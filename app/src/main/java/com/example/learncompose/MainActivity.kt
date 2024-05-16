@@ -65,6 +65,59 @@ fun Login() {
             fontWeight = FontWeight.Bold,
             color = Color(android.graphics.Color.parseColor("#7d32a8"))
         )
+        var user by remember { mutableStateOf("Username") }
+        var pass by remember { mutableStateOf("Password") }
+        var passwordVisible by rememberSaveable { mutableStateOf(false) }
+        TextField(
+            value = user,
+            onValueChange = { text -> user = text },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(66.dp)
+                .padding(start = 64.dp, end = 64.dp, top = 8.dp, bottom = 8.dp)
+                .border(
+                    1.dp, Color(android.graphics.Color.parseColor("#7d32a8")),
+                    shape = RoundedCornerShape(50)
+                ),
+            shape = RoundedCornerShape(50),
+            textStyle = TextStyle(
+                textAlign = TextAlign.Center,
+                color = Color(android.graphics.Color.parseColor("#7d32a8")),
+                fontSize = 15.sp
+            ),
+            colors = TextFieldDefaults.textFieldColors(
+                containerColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                cursorColor = LocalContentColor.current
+            )
+        )
+        TextField(
+            value = pass,
+            onValueChange = { text -> pass = text },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(66.dp)
+                .padding(start = 64.dp, end = 64.dp, top = 8.dp, bottom = 8.dp)
+                .border(
+                    1.dp, Color(android.graphics.Color.parseColor("#7d32a8")),
+                    shape = RoundedCornerShape(50)
+                ),
+            shape = RoundedCornerShape(50),
+            textStyle = TextStyle(
+                textAlign = TextAlign.Center,
+                color = Color(android.graphics.Color.parseColor("#7d32a8")),
+                fontSize = 15.sp
+            ),
+            colors = TextFieldDefaults.textFieldColors(
+                containerColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                cursorColor = LocalContentColor.current
+            ),
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+        )
 
     }
 }

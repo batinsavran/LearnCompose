@@ -118,6 +118,25 @@ fun Login() {
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
+        Button(
+            onClick = { /* TODO */ },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(66.dp)
+                .padding(start = 64.dp, end = 64.dp, top = 8.dp, bottom = 8.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(android.graphics.Color.parseColor("#7d32a8"))
+            ),
+            shape = RoundedCornerShape(50)
+        ) {
+            Text("Login",  color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        }
+        Text(
+            text = "Don't Remember Password? Click Here",
+            modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
+            color = Color(android.graphics.Color.parseColor("#7d32a8")),
+            fontSize = 15.sp
+        )
 
     }
 }

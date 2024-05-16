@@ -129,7 +129,7 @@ fun Login() {
             ),
             shape = RoundedCornerShape(50)
         ) {
-            Text("Login",  color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Text("Login", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         }
         Text(
             text = "Don't Remember Password? Click Here",
@@ -137,6 +137,27 @@ fun Login() {
             color = Color(android.graphics.Color.parseColor("#7d32a8")),
             fontSize = 15.sp
         )
-
+        Row {
+            Image(
+                painter = painterResource(id = R.drawable.google),
+                contentDescription = null,
+                modifier = Modifier.padding(8.dp)
+            )
+            Image(
+                painter = painterResource(id = R.drawable.facebook),
+                contentDescription = null,
+                modifier = Modifier.padding(8.dp)
+            )
+            Image(
+                painter = painterResource(id = R.drawable.twitter),
+                contentDescription = null,
+                modifier = Modifier.padding(8.dp)
+            )
+        }
+        Image(
+            painterResource(id = R.drawable.bottom_background),
+            contentDescription = null,
+            contentScale = ContentScale.FillBounds
+        )
     }
 }

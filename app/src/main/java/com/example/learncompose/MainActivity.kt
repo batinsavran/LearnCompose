@@ -51,7 +51,6 @@ fun Login() {
     var pass by remember { mutableStateOf("Password") }
     val passwordVisible by rememberSaveable { mutableStateOf(false) }
 
-    // FocusRequesters for TextFields
     val userFocusRequester = remember { FocusRequester() }
     val passFocusRequester = remember { FocusRequester() }
 
@@ -107,8 +106,7 @@ fun Login() {
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 cursorColor = LocalContentColor.current
-            ),
-            placeholder = { Text("Username") }
+            )
         )
         TextField(
             value = pass,
@@ -140,8 +138,7 @@ fun Login() {
                 cursorColor = LocalContentColor.current
             ),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            placeholder = { Text("Password") }
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
         Button(
             onClick = {

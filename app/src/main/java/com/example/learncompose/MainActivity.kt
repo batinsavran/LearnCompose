@@ -1,5 +1,6 @@
 package com.example.learncompose
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -27,6 +28,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +46,15 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun Login() {
+    val context = LocalContext.current
+    var user by remember { mutableStateOf("Username") }
+    var pass by remember { mutableStateOf("Password") }
+    val passwordVisible by rememberSaveable { mutableStateOf(false) }
+
+    // FocusRequesters for TextFields
+    val userFocusRequester = remember { FocusRequester() }
+    val passFocusRequester = remember { FocusRequester() }
+
     Column(
         Modifier
             .fillMaxHeight()
@@ -65,9 +79,6 @@ fun Login() {
             fontWeight = FontWeight.Bold,
             color = Color(android.graphics.Color.parseColor("#7d32a8"))
         )
-        var user by remember { mutableStateOf("Username") }
-        var pass by remember { mutableStateOf("Password") }
-        var passwordVisible by rememberSaveable { mutableStateOf(false) }
         TextField(
             value = user,
             onValueChange = { text -> user = text },
@@ -78,7 +89,13 @@ fun Login() {
                 .border(
                     1.dp, Color(android.graphics.Color.parseColor("#7d32a8")),
                     shape = RoundedCornerShape(50)
-                ),
+                )
+                .focusRequester(userFocusRequester)
+                .onFocusChanged { focusState ->
+                    if (focusState.isFocused && user == "Username") {
+                        user = ""
+                    }
+                },
             shape = RoundedCornerShape(50),
             textStyle = TextStyle(
                 textAlign = TextAlign.Center,
@@ -90,7 +107,8 @@ fun Login() {
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 cursorColor = LocalContentColor.current
-            )
+            ),
+            placeholder = { Text("Username") }
         )
         TextField(
             value = pass,
@@ -102,7 +120,13 @@ fun Login() {
                 .border(
                     1.dp, Color(android.graphics.Color.parseColor("#7d32a8")),
                     shape = RoundedCornerShape(50)
-                ),
+                )
+                .focusRequester(passFocusRequester)
+                .onFocusChanged { focusState ->
+                    if (focusState.isFocused && pass == "Password") {
+                        pass = ""
+                    }
+                },
             shape = RoundedCornerShape(50),
             textStyle = TextStyle(
                 textAlign = TextAlign.Center,
@@ -116,10 +140,14 @@ fun Login() {
                 cursorColor = LocalContentColor.current
             ),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            placeholder = { Text("Password") }
         )
         Button(
-            onClick = { /* TODO */ },
+            onClick = {
+                val intent = Intent(context, MainActivity2::class.java)
+                context.startActivity(intent)
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(66.dp)

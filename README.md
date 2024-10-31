@@ -8,7 +8,6 @@ This project is a learning exercise to explore the capabilities of Jetpack Compo
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 

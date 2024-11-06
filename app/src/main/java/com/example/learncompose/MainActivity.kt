@@ -32,6 +32,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import com.example.learncompose.lessons.LessonOne
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -142,7 +143,7 @@ fun Login() {
         )
         Button(
             onClick = {
-                val intent = Intent(context, MainActivity2::class.java)
+                val intent = Intent(context, LessonOne::class.java)
                 context.startActivity(intent)
             },
             modifier = Modifier
